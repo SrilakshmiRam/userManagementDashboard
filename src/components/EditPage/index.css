@@ -43,7 +43,7 @@
   }
   
   /* Button styling */
-  button {
+  .save {
     padding: 12px;
     font-size: 1rem;
     color: white;
@@ -55,11 +55,11 @@
     width: 100%;
   }
   
-  button:hover {
+  save:hover {
     background-color: #218838;
   }
   
-  button:active {
+  save:active {
     background-color: #1e7e34;
   }
   

@@ -2,35 +2,42 @@ import { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Context from '../../context/Context';
 
+import './index.css';
+
 const EditPage = () => {
   const { usersData, updateUser } = useContext(Context);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    department: '',
+    department: '', // Initially empty
   });
+
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Find the user by ID
   const user = usersData.find((each) => each.id === parseInt(id));
 
+  // Populate the form data when the user is found
   useEffect(() => {
     if (user) {
       setFormData({
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        department: user.department,
+        department: user.department || '', // Set the department (if available)
       });
     }
-  }, [user]);
+  }, [user]); // Only runs when the user is found or updated
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,21 +58,22 @@ const EditPage = () => {
 
       if (response.ok) {
         const updatedUser = await response.json();
-        updateUser(parseInt(id), updatedUser);
+        updateUser(parseInt(id), updatedUser); // Update local context
         alert('User data updated successfully');
         navigate('/');
       } else {
         console.error(`Failed to update user on the server: ${response.statusText}`);
         alert('Failed to update the user on the server. Changes are saved locally.');
-        updateUser(parseInt(id), { ...user, ...formData });
+        updateUser(parseInt(id), { ...user, ...formData }); // Update local context
       }
     } catch (e) {
       console.error('Error while updating the data:', e.message);
       alert('An error occurred while updating the user on the server. Changes are saved locally.');
-      updateUser(parseInt(id), { ...user, ...formData });
+      updateUser(parseInt(id), { ...user, ...formData }); // Update local context
     }
   };
 
+  // If the user is not found, show an error message
   if (!user) {
     return <h1>User not found</h1>;
   }
@@ -111,7 +119,7 @@ const EditPage = () => {
           <label>Department:</label>
           <select
             name="department"
-            value={formData.department}
+            value={formData.department} // Set value to formData.department
             onChange={handleChange}
             required
           >
@@ -124,13 +132,15 @@ const EditPage = () => {
           </select>
         </div>
 
-        <button type="submit" className="submit-btn">Save Changes</button>
+        <button type="submit" className="save">Save Changes</button>
       </form>
     </div>
   );
 };
 
 export default EditPage;
+
+
 
 
 
