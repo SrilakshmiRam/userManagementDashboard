@@ -4,7 +4,6 @@ import { useState,useEffect } from 'react'
 import Home from './components/Home'
 import AddPage from './components/AddPage'
 import EditPage from './components/EditPage'
-import DeletePage from './components/DeletePage'
 
 import Context from './context/Context'
 
@@ -45,14 +44,26 @@ const App=()=>{
   },[]) // Empty dependency array to run only once when the component mounts
 
 
+  const updateUsersData=(formData)=>{
+    setUsersData((prevData)=>[...prevData,formData])
+  }
+
+  const updateUser = (id, formData) => {
+    setUsersData((prevData) =>
+      prevData.map((each) =>
+        each.id === id ? { ...each, ...formData } : each
+      )
+    );
+  };
+  
+
   return(
-  <Context.Provider value={{usersData}}>
+  <Context.Provider value={{usersData,updateUsersData,updateUser}}>
     <BrowserRouter>
     <Routes>
       <Route exact path='/' element={<Home/>} />
       <Route exact path='/add/' element={<AddPage/>} />
       <Route exact path='/edit/:id' element={<EditPage/>} />
-      <Route exact path='delete/:id' element={<DeletePage/>} />
     </Routes>
     </BrowserRouter>
   </Context.Provider>

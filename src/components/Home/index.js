@@ -1,22 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Context from '../../context/Context';
 import './index.css'; // Importing CSS for styling
 
 const Home = () => {
   const { usersData } = useContext(Context); // Accessing user data from Context
-  
+
+  const [users, setUsers] = useState(usersData); // Local state to manage users
+  // Sync local users state with usersData from context
+  useEffect(() => {
+    setUsers(usersData);
+  }, [usersData]); // Whenever usersData changes, update local state
+
   // Pagination state and settings
   const [currentPage, setCurrentPage] = useState(1); // State for the current page
   const usersPerPage = 10; // Number of users per page
 
   // Calculate the number of pages needed
-  const totalPages = Math.ceil(usersData.length / usersPerPage);
+  const totalPages = Math.ceil(users.length / usersPerPage);
 
   // Determine the users to display on the current page
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = usersData.slice(indexOfFirstUser, indexOfLastUser);
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
   // Handle page change (Previous and Next buttons)
   const nextPage = () => {
@@ -28,6 +34,31 @@ const Home = () => {
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Handle delete request
+  const handleDelete = async (userId) => {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        console.log('User deleted successfully');
+        
+        // Remove the user from the local state (without updating context)
+        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+
+        // Optionally, show a success alert
+        alert('User deleted successfully');
+      } else {
+        console.error('Error deleting user:', response.statusText);
+        alert('Failed to delete user');
+      }
+    } catch (e) {
+      console.error('Error during the request:', e);
+      alert('Error while deleting user');
     }
   };
 
@@ -53,9 +84,10 @@ const Home = () => {
               <Link to={`/edit/${user.id}`} className="nav-link">
                 <button className="edit">Edit</button>
               </Link>
-              <Link to={`/delete/${user.id}`} className="nav-link">
-                <button className="delete">Delete</button>
-              </Link>
+              {/* Fix: Move onClick inside the Delete button */}
+              <button className="delete" onClick={() => handleDelete(user.id)}>
+                Delete
+              </button>
             </div>
           </li>
         ))}
@@ -81,6 +113,8 @@ const Home = () => {
 };
 
 export default Home;
+
+
 
 
 

@@ -87,6 +87,7 @@ button.edit:active {
 
 button.delete {
   background-color: #dc3545;
+  width: 80px;
 }
 
 button.delete:hover {

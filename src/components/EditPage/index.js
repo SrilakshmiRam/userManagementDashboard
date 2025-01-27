@@ -2,69 +2,70 @@ import { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Context from '../../context/Context';
 
-import './index.css'; // Importing the CSS file
-
 const EditPage = () => {
-  const { usersData } = useContext(Context); // Access context
+  const { usersData, updateUser } = useContext(Context);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     department: '',
   });
-  const { id } = useParams(); // Extract the ID from URL params
-  const navigate = useNavigate(); // To navigate after saving changes
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  // Find the user by ID (ensure `id` is compared as a number if required)
-  const user = Array.isArray(usersData)
-    ? usersData.find((each) => each.id === parseInt(id))
-    : null;
+  const user = usersData.find((each) => each.id === parseInt(id));
 
   useEffect(() => {
     if (user) {
       setFormData({
-        firstName: user.firstName || '',
-        lastName: user.lastName || '',
-        email: user.email || '',
-        department: user.department || '',
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        department: user.department,
       });
     }
   }, [user]);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      alert('User not found');
+      return;
+    }
 
     try {
       const url = `https://jsonplaceholder.typicode.com/users/${id}`;
       const options = {
-        method: 'PUT', // Use PUT for updating data
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...user, ...formData }), // Send updated user data
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...user, ...formData }),
       };
 
       const response = await fetch(url, options);
+
       if (response.ok) {
+        const updatedUser = await response.json();
+        updateUser(parseInt(id), updatedUser);
         alert('User data updated successfully');
-        navigate('/'); // Navigate to the home page after saving changes
+        navigate('/');
       } else {
-        throw new Error(`Failed to update user: ${response.statusText}`);
+        console.error(`Failed to update user on the server: ${response.statusText}`);
+        alert('Failed to update the user on the server. Changes are saved locally.');
+        updateUser(parseInt(id), { ...user, ...formData });
       }
     } catch (e) {
       console.error('Error while updating the data:', e.message);
-      alert('An error occurred while updating the user data.');
+      alert('An error occurred while updating the user on the server. Changes are saved locally.');
+      updateUser(parseInt(id), { ...user, ...formData });
     }
   };
 
-  // If no user is found, display an error message
   if (!user) {
     return <h1>User not found</h1>;
   }
@@ -130,5 +131,8 @@ const EditPage = () => {
 };
 
 export default EditPage;
+
+
+
 
 
