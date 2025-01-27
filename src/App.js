@@ -45,12 +45,8 @@ const App=()=>{
   },[]) // Empty dependency array to run only once when the component mounts
 
 
-  const updateUsersData=(formData)=>{
-    setUsersData((prevData)=>[...prevData,formData])
-  }
-
   return(
-  <Context.Provider value={{usersData,updateUsersData}}>
+  <Context.Provider value={{usersData}}>
     <BrowserRouter>
     <Routes>
       <Route exact path='/' element={<Home/>} />
