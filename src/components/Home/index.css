@@ -1,0 +1,215 @@
+/* Container for the Home page */
+.home-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Heading Style */
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Cards Container (for users) */
+.cards-container {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0px;
+}
+
+/* Individual Card Style */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.card p strong {
+  color: #333;
+}
+
+/* Buttons container for Edit and Delete buttons */
+.buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.edit {
+  background-color: #007bff;
+}
+
+button.edit:hover {
+  background-color: #0056b3;
+}
+
+button.edit:active {
+  background-color: #004085;
+}
+
+button.delete {
+  background-color: #dc3545;
+}
+
+button.delete:hover {
+  background-color: #a71d2a;
+}
+
+button.delete:active {
+  background-color: #721c24;
+}
+
+/* Floating Add User Button Style */
+.add-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 13px;
+  padding: 16px 24px; /* Increased padding for better accessibility */
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100px; /* Fixed width for circular button */
+  height: 100px; /* Ensure the height is the same as the width for a perfect circle */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the content (icon or text) */
+}
+
+.add-button:hover {
+  background-color: #218838;
+}
+
+.add-button:active {
+  background-color: #1e7e34;
+}
+
+
+.previous{
+  width:80px;
+  font-size: 14px;
+}
+
+.next{
+  width:80px;
+  font-size: 14px;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin-top: 20px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+  .home-container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .add-button {
+    font-size: 13px; /* Smaller text size */
+    padding: 14px 20px; /* Adjust padding */
+    width: 50px; /* Smaller width for mobile */
+    height: 50px; /* Keep the button circular */
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 7px 10px;
+  }
+}
+
+/* For Tablets (601px to 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .home-container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .add-button {
+    font-size: 13px; /* Slightly smaller than desktop */
+    padding: 15px 22px; /* Adjust padding for tablets */
+    width: 55px; /* Moderate width for tablets */
+    height: 55px; /* Keep the button circular */
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+}
+
+/* For Larger Devices (900px and above) */
+@media (min-width: 901px) {
+  .home-container {
+    padding: 20px;
+    margin: 0 auto;
+  }
+
+  .add-button {
+    font-size: 13px; /* Larger font size for desktop */
+    padding: 16px 24px; /* Larger padding for desktop */
+    width: 60px; /* Default width for desktop */
+    height: 60px; /* Default height */
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 14px;
+  }
+}
+
+  

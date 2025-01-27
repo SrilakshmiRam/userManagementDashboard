@@ -1,0 +1,29 @@
+.delete-page {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #f8d7da;
+    padding: 20px;
+    border: 1px solid #f5c6cb;
+    border-radius: 10px;
+  }
+  
+  .delete-page h1 {
+    color: #721c24;
+    margin-bottom: 20px;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  

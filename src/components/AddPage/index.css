@@ -1,0 +1,151 @@
+/* AddPage styling */
+.add-page-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  submit-button:active {
+    background-color: #388e3c;
+  }
+  
+  select {
+    -webkit-appearance: none; /* Remove default dropdown arrow */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><polygon points="5,7 10,12 15,7" fill="gray" /></svg>');
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 12px;
+  }
+  
+  option {
+    font-size: 16px;
+  }
+  
+  /* Media Queries for Responsiveness */
+  
+  /* For Mobile Devices */
+  @media (max-width: 600px) {
+    .add-page-container {
+      padding: 15px;
+      margin: 20px;
+      max-width: 100%;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    input, select, button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    button {
+      padding: 10px;
+    }
+  }
+  
+  /* For Tablets (601px to 900px) */
+  @media (min-width: 601px) and (max-width: 900px) {
+    .add-page-container {
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    h1 {
+      font-size: 22px;
+    }
+  
+    input, select, button {
+      font-size: 15px;
+      padding: 9px;
+    }
+  
+    button {
+      padding: 11px;
+    }
+  }
+  
+  /* For Larger Devices (900px and above) */
+  @media (min-width: 901px) {
+    .add-page-container {
+      padding: 20px;
+      max-width: 500px;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    input, select, button {
+      font-size: 16px;
+      padding: 10px;
+    }
+  
+    button {
+      padding: 12px;
+    }
+  }
+  

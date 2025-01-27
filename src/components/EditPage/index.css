@@ -1,0 +1,140 @@
+/* Base styles for the EditPage */
+.edit-page-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Input fields and select styling */
+  input,
+  select {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Button styling */
+  button {
+    padding: 12px;
+    font-size: 1rem;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  button:active {
+    background-color: #1e7e34;
+  }
+  
+  /* Media Queries for Responsiveness */
+  
+  /* For Mobile Devices (max-width: 600px) */
+  @media (max-width: 600px) {
+    .edit-page-container {
+      padding: 15px;
+      margin: 10px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    label {
+      font-size: 1rem;
+    }
+  
+    input,
+    select {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    button {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  }
+  
+  /* For Tablets (601px to 900px) */
+  @media (min-width: 601px) and (max-width: 900px) {
+    .edit-page-container {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    h1 {
+      font-size: 1.75rem;
+    }
+  
+    input,
+    select {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  
+    button {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
+  
+  /* For Larger Devices (900px and above) */
+  @media (min-width: 901px) {
+    .edit-page-container {
+      padding: 30px;
+      margin: 50px auto;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    input,
+    select {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  
+    button {
+      font-size: 1.1rem;
+      padding: 14px;
+    }
+  }
+  
